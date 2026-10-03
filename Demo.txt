@@ -1,2 +1,3 @@
 Demo 1 - Java Basics and Git
 Hello from abhishek
+1st lecture 03/10/2026 with Akash Sir.
