@@ -1,2 +1,0 @@
-Demo 1 - Java Basics and Git
-Demo 2 - OOP TEst
