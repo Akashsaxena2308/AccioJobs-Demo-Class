@@ -1,0 +1,48 @@
+**Problem: Design a Small Library System**
+
+A library contains ordinary books, magazines and reference books.
+
+Every item has an item ID and a title. All items should be able to display their details.
+
+Additional information differs by item:
+
+- An ordinary book has an author.
+- A magazine has an issue number.
+- A reference book has a subject.
+
+Ordinary books and magazines can be borrowed and returned. Reference books can only be read inside the library.
+
+**Required behavior**
+
+1. Create at least one item of each type.
+2. Display each item’s common and type-specific details.
+3. Borrow an ordinary book or magazine.
+4. Prevent borrowing an item that is already borrowed.
+5. Return a borrowed item. Reject returning an item that was not borrowed.
+6. Prevent reference books from being used by an operation that expects a borrowable item.
+7. Keep fields private and avoid copying the same fields or logic into every class.
+
+Use simple objects and calls from `main`. A database, menu and collection of items are not required.
+
+**Design first**
+
+Before writing code, submit a small class diagram and answer:
+
+- Which properties and methods belong in a shared parent class?
+- Should that parent be abstract? Why?
+- Which behavior should subclasses override?
+- Is borrowing a property of every library item, or a capability supported by some items?
+- What belongs in an interface?
+- Where should the borrowed status and its validation live?
+- How could one method display details for different item types?
+- How could another method accept only items that support borrowing?
+
+**Demonstration**
+
+Create a book, a magazine and a reference book. Display all three.
+
+Borrow the book successfully, attempt to borrow it again, return it, and attempt to return it again. Explain how your design prevents a reference book from being passed to a borrowing operation.
+
+**Submission**
+
+Provide your diagram, brief design reasoning and runnable Java code. More than one design is acceptable if you can explain its choices.
