@@ -1,2 +1,2 @@
 # AccioJobs-Demo-Class
-Demo class
+Java, Spring and Springboot Lectures
