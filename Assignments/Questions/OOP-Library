@@ -10,7 +10,8 @@ Additional information differs by item:
 - A magazine has an issue number.
 - A reference book has a subject.
 
-Ordinary books and magazines can be borrowed and returned. Reference books can only be read inside the library.
+Ordinary books and magazines can be borrowed and returned.
+Reference books can only be read inside the library.
 
 **Required behavior**
 
@@ -46,3 +47,32 @@ Borrow the book successfully, attempt to borrow it again, return it, and attempt
 **Submission**
 
 Provide your diagram, brief design reasoning and runnable Java code. More than one design is acceptable if you can explain its choices.
+
+
+
+main class  -- Abstract
+itemId
+title
+isAvailable
+
+
+borrowClass
+isAvailable
+
+
+OB inherits main class
+
+Mag inherits main class
+
+RB inherits main class
+
+Interface --> BorrowableLibItem --> Book and Mag
+Interface --> Contract --> borrow()
+
+
+LibraryItem (Abstract) --> itemId, Title, commonDisplay()
+ --> borrowableLibraryItem (abstract)
+ -->
+Book
+Mag
+RB
