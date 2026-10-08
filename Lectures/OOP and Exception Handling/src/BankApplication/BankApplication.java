@@ -1,7 +1,5 @@
 package BankApplication;
 
-import java.util.UUID;
-
 public class BankApplication {
     //Bank Account
     //name
@@ -16,7 +14,7 @@ public class BankApplication {
     // b = 5
     // a  < INT - b
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 //        BankAccount b1 = new BankAccount("John", "1234", 10000);
 //        BankAccount b2 = new BankAccount("doe", "5678", 5000);
 //
@@ -46,5 +44,25 @@ public class BankApplication {
         System.out.println(sbiAccount.checkBalance("1122"));
 
         BankInterface bank1 = new SBI("Jane", "5555", 10000);
+        //InvalidAmountException
+
+//        try {
+        try {
+            bank1.addMoney(-1);
+        } catch (InvalidAmountException e) {
+            throw new RuntimeException(e);
+        }
+//        } catch (IllegalArgumentException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        finally{}
+//        try{}
+//        catch{}
+//        finally{}
+
+        System.out.println("PRint");
     }
+
+//    Checked
+//    Unchecked
 }

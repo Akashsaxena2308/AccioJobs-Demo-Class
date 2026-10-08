@@ -24,14 +24,22 @@ public abstract class BankAccount implements BankInterface {
         return balance;
     }
 
-    public String addMoney(int money){
+    //Custom exception
+
+    //Throws --> Identifier --> Method will throw an exception
+    //Throw -->
+    //new Illegal("message")
+    public String addMoney(int money) throws InvalidAmountException {
+        //Mathematical Operations  --> ArthimeticException
+
+//        throw new EXCEPTIONCLASS
         if(money <= 0){
-            return "Deposit must be postive value!";
+            throw new InvalidAmountException("Deposit must be positive!");
         }
         if(balance > Integer.MAX_VALUE - money){
-            return "Balance Limit Exceeded!";
+            throw new InvalidAmountException("Deposit must be positive!");
         }
-
+//new customError("error messagef")
         balance+=money;
 
         return "Deposited :" + money;
@@ -39,7 +47,11 @@ public abstract class BankAccount implements BankInterface {
 
     public String addMoney(int money, int note){
         System.out.println();
-        return "Notes used : " + note + " " + addMoney(money);
+        try {
+            return "Notes used : " + note + " " + addMoney(money);
+        } catch (InvalidAmountException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String getName() {
@@ -89,3 +101,16 @@ public abstract class BankAccount implements BankInterface {
         return (double) balance * getInterestRate()*years / 100;
     }
 }
+
+//  PARENT --> CHILD --> constructor ---> Parent constructor --> super();
+// customException --> Exception --> Exception(error)
+//
+//{
+//
+//    customException(String error){
+//        super(error);
+//    }
+//
+//        }
+//ParenthesizedTree
+
