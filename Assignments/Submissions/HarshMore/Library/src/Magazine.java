@@ -1,5 +1,3 @@
-package Library;
-
 class Magazine extends BorrowableItem {
     private int issueNumber;
 

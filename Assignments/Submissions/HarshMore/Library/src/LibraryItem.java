@@ -1,5 +1,3 @@
-package Library;
-
 public abstract class LibraryItem {
     private int itemId;
     private String title;

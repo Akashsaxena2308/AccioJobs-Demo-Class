@@ -1,5 +1,3 @@
-package Library;
-
 class ReferenceBook extends LibraryItem {
     private String subject;
 

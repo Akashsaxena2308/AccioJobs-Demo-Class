@@ -1,5 +1,3 @@
-package Library;
-
 public abstract class BorrowableItem extends LibraryItem implements Borrowable {
 
     private boolean borrowed;

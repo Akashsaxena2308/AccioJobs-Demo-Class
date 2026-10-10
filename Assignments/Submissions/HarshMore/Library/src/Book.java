@@ -1,5 +1,3 @@
-package Library;
-
 class Book extends BorrowableItem {
     private String author;
 
