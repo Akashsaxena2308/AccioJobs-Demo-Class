@@ -1,50 +1,42 @@
 package BankApplication;
 
-import java.util.UUID;
-
 public class BankApplication {
-    //Bank Account
-    //name
-    //accoutNo
-    //password
-    //balance
-    //checkBalance() --> Password protected
-    //UUID.randomUUID().toString();
-
-    //INT MAX = 10
-    // a = 7
-    // b = 5
-    // a  < INT - b
-
-    public static void main(String[] args){
-//        BankAccount b1 = new BankAccount("John", "1234", 10000);
-//        BankAccount b2 = new BankAccount("doe", "5678", 5000);
-//
-//        System.out.println(b1.checkBalance("1234"));
-//        System.out.println(b2.checkBalance("1234"));
-//        System.out.println(b2.checkBalance("5678"));
-//
-//        System.out.println(b1.addMoney(5000));
-//        System.out.println(b1.checkBalance("1234"));
-//
-//        System.out.println(b1.changePassword("1234","0000"));
-//        System.out.println(b1.withDrawMoney(1000,"1234"));
-//        System.out.println(b1.withDrawMoney(5000, "0000"));
-//        System.out.println(b1.checkBalance("0000"));
-
+    public static void main(String[] args) {
         SBI sbiAccount = new SBI("James", "1122", 10000);
         HDFC hdfcAccount = new HDFC("Lee", "5566", 10000);
 
-        System.out.println(sbiAccount.checkBalance("1122"));
-        System.out.println(hdfcAccount.checkBalance("5566"));
-        System.out.println(sbiAccount.calculateInterestAfterYears(1));
-        System.out.println(hdfcAccount.calculateInterestAfterYears(1));
-
-
-
+        System.out.println("SBI interest: " + sbiAccount.calculateInterestAfterYears(1));
+        System.out.println("HDFC interest: " + hdfcAccount.calculateInterestAfterYears(1));
         System.out.println(sbiAccount.addMoney(1000, 100));
-        System.out.println(sbiAccount.checkBalance("1122"));
 
-        BankInterface bank1 = new SBI("Jane", "5555", 10000);
+        // 1. Unchecked exception: catch is optional to compile, useful to recover.
+
+            sbiAccount.addMoney(-1);
+
+
+        // 2. Checked exception: the caller must catch it or declare throws.
+        BankInterface account = sbiAccount;
+        try {
+            System.out.println(account.withDrawMoney(20000, "1122"));
+        } catch (InsufficientFundsException e) {
+            System.out.println("Withdrawal failed: " + e.getMessage());
+        }
+        System.out.println("Balance after failed withdrawal: " + account.checkBalance("1122"));
+
+        // 3. A valid withdrawal succeeds; a negative withdrawal is rejected.
+
+//        account.withDrawMoney(1000, "1122");
+        try {
+            System.out.println(account.withDrawMoney(2000, "1122"));
+            account.withDrawMoney(-100, "1122");
+        } catch (InsufficientFundsException e) {
+            System.out.println("Withdrawal failed: " + e.getMessage());
+        } catch (InvalidAmountException e) {
+            System.out.println("Invalid amount: " + e.getMessage());
+        } finally {
+            System.out.println("Withdrawal attempt completed");
+        }
+        System.out.println("Final balance: " + account.checkBalance("1122"));
+        System.out.println("Application continues after handled failures");
     }
 }
