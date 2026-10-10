@@ -8,50 +8,53 @@ public abstract class BankAccount implements BankInterface {
     private String password;
     private int balance;
 
-    BankAccount(String name, String password, int balance){
+    protected BankAccount(String name, String password, int balance) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Name must not be blank");
+        }
+        if (password == null || password.isBlank()) {
+            throw new IllegalArgumentException("Password must not be blank");
+        }
+        if (balance < 0) {
+            throw new InvalidAmountException("Opening balance cannot be negative");
+        }
         this.name = name;
         this.password = password;
         this.balance = balance;
         this.accountNo = UUID.randomUUID().toString();
     }
 
-
-    public int checkBalance(String password){
-        if(!this.password.equals(password)){
-            return -1;
+    private void verifyPassword(String suppliedPassword) {
+        if (!password.equals(suppliedPassword)) {
+            throw new SecurityException("Incorrect password entered");
         }
+    }
 
+    @Override
+    public int checkBalance(String password) {
+        verifyPassword(password);
         return balance;
     }
 
-    //Custom exception
-
-    //Throws --> Identifier --> Method will throw an exception
-    //Throw -->
-    //new Illegal("message")
-    public String addMoney(int money) throws InvalidAmountException {
-        //Mathematical Operations  --> ArthimeticException
-
-//        throw new EXCEPTIONCLASS
-        if(money <= 0){
-            throw new InvalidAmountException("Deposit must be positive!");
+    @Override
+    public String addMoney(int money) {
+        // Unchecked exceptions do not require a throws declaration.
+        if (money <= 0) {
+            throw new InvalidAmountException("Deposit must be positive");
         }
-        if(balance > Integer.MAX_VALUE - money){
-            throw new InvalidAmountException("Deposit must be positive!");
+        if (money > Integer.MAX_VALUE - balance) {
+            throw new InvalidAmountException("Deposit would exceed the balance limit");
         }
-//new customError("error messagef")
-        balance+=money;
-
-        return "Deposited :" + money;
+        balance += money;
+        return "Deposited: " + money;
     }
 
-    public String addMoney(int money, int note){
-        System.out.println();
-        try {
-            return "Notes used : " + note + " " + addMoney(money);
-        } catch (InvalidAmountException e) {
-            throw new RuntimeException(e);
+    public String addMoney(int money, int note) {
+        if (note <= 0) {
+            throw new InvalidAmountException("Note denomination must be positive");
         }
+        // Delegate validation to the first overload; let the caller handle failure.
+        return "Note denomination: " + note + ". " + addMoney(money);
     }
 
     public String getName() {
@@ -62,55 +65,42 @@ public abstract class BankAccount implements BankInterface {
         return accountNo;
     }
 
-    public String changePassword(String oldPassword, String newPassword){
-        if(!this.password.equals(oldPassword)){
-            return "Incorrect password entered!";
+    public String changePassword(String oldPassword, String newPassword) {
+        verifyPassword(oldPassword);
+        if (newPassword == null || newPassword.isBlank()) {
+            throw new IllegalArgumentException("New password must not be blank");
         }
-        if(newPassword==null || newPassword.isBlank()){
-            return "New password must not be blank!";
-        }
-
-        this.password = newPassword;
-        return "Password changed!";
+        password = newPassword;
+        return "Password changed";
     }
 
-    public String withDrawMoney(int money, String password){
-        if(!this.password.equals(password)){
-            return "Incorrect password entered!";
+    @Override
+    public String withDrawMoney(int money, String password) throws InsufficientFundsException {
+        verifyPassword(password);
+        if (money <= 0) {
+            throw new InvalidAmountException("Withdrawal must be positive");
         }
-        if(money > balance){
-            return "Insufficient funds!";
+        if (money > balance) {
+            // throw creates the failure; throws declares it to the caller.
+            throw new InsufficientFundsException(
+                    "Requested " + money + ", but available balance is " + balance);
         }
-
-        balance-=money;
-        return "Withdrawn :" +  money + " Final balance :" + balance;
+        // Update only after every check passes. A failed withdrawal changes nothing.
+        balance -= money;
+        return "Withdrawn: " + money + ". Final balance: " + balance;
     }
 
-    //Get Bank name method
-    //Number of years as input and calculates interest
-
+    @Override
     public abstract String getBankName();
 
+    @Override
     public abstract int getInterestRate();
 
-    public double calculateInterestAfterYears(int years){
-        if(years<=0){
-            return -1;
+    public double calculateInterestAfterYears(int years) {
+        if (years <= 0) {
+            throw new IllegalArgumentException("Years must be positive");
         }
-
-        return (double) balance * getInterestRate()*years / 100;
+        // Convert before multiplication to avoid overflowing an int intermediate.
+        return (double) balance * getInterestRate() * years / 100;
     }
 }
-
-//  PARENT --> CHILD --> constructor ---> Parent constructor --> super();
-// customException --> Exception --> Exception(error)
-//
-//{
-//
-//    customException(String error){
-//        super(error);
-//    }
-//
-//        }
-//ParenthesizedTree
-

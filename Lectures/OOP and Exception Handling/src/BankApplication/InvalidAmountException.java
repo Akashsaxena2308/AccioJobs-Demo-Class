@@ -1,7 +1,8 @@
 package BankApplication;
 
-public class InvalidAmountException extends IllegalArgumentException{
-    InvalidAmountException(String message){
+// IllegalArgumentException extends RuntimeException, so this is unchecked.
+public class InvalidAmountException extends IllegalArgumentException {
+    public InvalidAmountException(String message) {
         super(message);
     }
 }
