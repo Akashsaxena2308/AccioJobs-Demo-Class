@@ -1,8 +1,8 @@
 package BankApplication;
 
 public interface BankInterface {
-    int checkBalance(String password) throws Invalid_Expection;
-    String addMoney(int money) throws Invalid_Expection;
+    int checkBalance(String password);
+    String addMoney(int money);
     String withDrawMoney(int money, String password);
     String getBankName();
     int getInterestRate();

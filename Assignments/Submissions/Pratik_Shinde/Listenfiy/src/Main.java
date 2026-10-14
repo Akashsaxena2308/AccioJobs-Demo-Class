@@ -20,5 +20,9 @@ public class Main {
         album.addToPlaylist("2025", playList1);
         album.addToPlaylist("2024", playList1);
 
+        while(true){
+
+        }
+
     }
 }
