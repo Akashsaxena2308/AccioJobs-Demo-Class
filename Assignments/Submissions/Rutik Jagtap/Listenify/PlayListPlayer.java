@@ -1,15 +1,17 @@
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 public class PlayListPlayer {
     private Song currentSong;
     private LinkedList<Song> playList = new LinkedList<>();
-    private int currentIndex = 0;
+    private ListIterator<Song> cursor;
     private boolean paused = false;
 
     public void addSong(Song song) {
         if (song != null) {
             playList.add(song);
+            cursor = playList.listIterator();
         }
     }
 
@@ -18,11 +20,11 @@ public class PlayListPlayer {
             System.out.println("Playlist is empty. Nothing to play.");
             return null;
         }
-        if (currentIndex >= playList.size()) {
-            currentIndex = 0;
+        // Initialize cursor if null, or reset to start if we've gone past the end
+        if (cursor == null || !cursor.hasNext()) {
+            cursor = playList.listIterator();
         }
-        currentSong = playList.get(currentIndex);
-        currentIndex++;
+        currentSong = cursor.next();
         paused = false;
         System.out.println("Now playing: " + currentSong.getTitle());
         return currentSong;
@@ -33,11 +35,11 @@ public class PlayListPlayer {
             System.out.println("Playlist is empty. Nothing to play.");
             return null;
         }
-        currentIndex--;
-        if (currentIndex < 0) {
-            currentIndex = playList.size() - 1;
+        // Initialize cursor if null, or reset to end if we can't go back
+        if (cursor == null || !cursor.hasPrevious()) {
+            cursor = playList.listIterator(playList.size());
         }
-        currentSong = playList.get(currentIndex);
+        currentSong = cursor.previous();
         paused = false;
         System.out.println("Now playing: " + currentSong.getTitle());
         return currentSong;
@@ -81,14 +83,14 @@ public class PlayListPlayer {
         }
         if (playList.remove(currentSong)) {
             System.out.println("Removed: " + currentSong.getTitle());
-            if (currentIndex >= playList.size()) {
-                currentIndex = 0;
-            }
-            currentSong = playList.isEmpty() ? null : playList.get(currentIndex);
-            if (currentSong != null) {
-                System.out.println("Now playing: " + currentSong.getTitle());
-            } else {
+            // Reset cursor after removal since the list structure changed
+            cursor = playList.listIterator();
+            if (playList.isEmpty()) {
+                currentSong = null;
                 System.out.println("Playlist is now empty.");
+            } else {
+                currentSong = cursor.next();
+                System.out.println("Now playing: " + currentSong.getTitle());
             }
         }
     }
@@ -99,9 +101,11 @@ public class PlayListPlayer {
             return;
         }
         System.out.println("\n--- Playlist (" + playList.size() + " songs) ---");
-        for (int i = 0; i < playList.size(); i++) {
-            String marker = (i == currentIndex - 1 || (currentSong != null && playList.get(i) == currentSong)) ? " >> " : "    ";
-            System.out.println(marker + (i + 1) + ". " + playList.get(i));
+        int count = 1;
+        for (Song song : playList) {
+            String marker = (currentSong != null && song == currentSong) ? " >> " : "    ";
+            System.out.println(marker + count + ". " + song);
+            count++;
         }
         System.out.println("-------------------------------------\n");
     }
@@ -116,6 +120,8 @@ public class PlayListPlayer {
             return;
         }
         currentSong = playList.poll();
+        // Reset cursor since poll() modifies the list structure
+        cursor = playList.listIterator();
         System.out.println("Now playing: " + currentSong.getTitle());
     }
 
@@ -123,6 +129,8 @@ public class PlayListPlayer {
         while (!playList.isEmpty()) {
             play();
         }
+        // Reset cursor after draining the playlist
+        cursor = playList.listIterator();
     }
 
     public int size() {

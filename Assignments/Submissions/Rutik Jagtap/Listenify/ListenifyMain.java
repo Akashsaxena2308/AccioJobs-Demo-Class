@@ -12,6 +12,9 @@ public class ListenifyMain {
         System.out.println("Welcome to Listenify!");
         System.out.println("Create albums, add songs, and enjoy your playlist.\n");
 
+        // Automatic demonstration as required by the assignment
+        runAutoDemo();
+
         while (true) {
             printMenu();
             String input = scanner.nextLine().trim();
@@ -212,5 +215,95 @@ public class ListenifyMain {
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage() + "\n");
         }
+    }
+
+    private static void runAutoDemo() {
+        System.out.println("========================================");
+        System.out.println("  AUTOMATIC DEMONSTRATION");
+        System.out.println("========================================\n");
+
+        // Step 1: Create two albums
+        System.out.println("[Demo] Creating two albums...\n");
+        Album album1 = new Album("Greatest Hits", "Queen");
+        Album album2 = new Album("Rumours", "Fleetwood Mac");
+        albums.add(album1);
+        albums.add(album2);
+        System.out.println("  Created: " + album1);
+        System.out.println("  Created: " + album2 + "\n");
+
+        // Step 2: Add songs to album 1
+        System.out.println("[Demo] Adding songs to \"" + album1.getName() + "\"...\n");
+        album1.addSong("Bohemian Rhapsody", 354);
+        album1.addSong("We Will Rock You", 122);
+        album1.addSong("We Are the Champions", 179);
+        System.out.println("  Added: Bohemian Rhapsody (354s)");
+        System.out.println("  Added: We Will Rock You (122s)");
+        System.out.println("  Added: We Are the Champions (179s)\n");
+
+        // Step 3: Add songs to album 2
+        System.out.println("[Demo] Adding songs to \"" + album2.getName() + "\"...\n");
+        album2.addSong("Dreams", 257);
+        album2.addSong("The Chain", 277);
+        album2.addSong("Go Your Own Way", 218);
+        System.out.println("  Added: Dreams (257s)");
+        System.out.println("  Added: The Chain (277s)");
+        System.out.println("  Added: Go Your Own Way (218s)\n");
+
+        // Step 4: Show available albums
+        System.out.println("[Demo] Showing available albums...\n");
+        showAvailableAlbums();
+
+        // Step 5: Add songs from both albums to the playlist
+        System.out.println("[Demo] Building playlist from both albums...\n");
+        album1.addToPlaylist("Bohemian Rhapsody", player.getPlaylist());
+        album1.addToPlaylist("We Will Rock You", player.getPlaylist());
+        album2.addToPlaylist("Dreams", player.getPlaylist());
+        album2.addToPlaylist("The Chain", player.getPlaylist());
+        System.out.println("  Playlist now has " + player.size() + " songs.\n");
+
+        // Step 6: Show playlist
+        System.out.println("[Demo] Showing playlist...\n");
+        player.showPlaylist();
+
+        // Step 7: Play next song
+        System.out.println("[Demo] Playing next song...\n");
+        player.nextSong();
+        System.out.println();
+
+        // Step 8: Play next song again
+        System.out.println("[Demo] Playing next song again...\n");
+        player.nextSong();
+        System.out.println();
+
+        // Step 9: Play previous song
+        System.out.println("[Demo] Playing previous song...\n");
+        player.previousSong();
+        System.out.println();
+
+        // Step 10: Replay current song
+        System.out.println("[Demo] Replaying current song...\n");
+        player.replayCurrentSong();
+        System.out.println();
+
+        // Step 11: Pause / Resume
+        System.out.println("[Demo] Pausing...\n");
+        player.pauseResume();
+        System.out.println();
+        System.out.println("[Demo] Resuming...\n");
+        player.pauseResume();
+        System.out.println();
+
+        // Step 12: Remove current song
+        System.out.println("[Demo] Removing current song...\n");
+        player.removeCurrentSong();
+        System.out.println();
+
+        // Step 13: Show final playlist
+        System.out.println("[Demo] Final playlist state...\n");
+        player.showPlaylist();
+
+        System.out.println("========================================");
+        System.out.println("  DEMO COMPLETE — now try it yourself!");
+        System.out.println("========================================\n");
     }
 }
