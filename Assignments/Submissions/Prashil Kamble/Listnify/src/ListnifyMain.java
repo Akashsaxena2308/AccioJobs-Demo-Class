@@ -31,5 +31,8 @@ public class ListnifyMain {
 
         System.out.println(a1.getArtist());
         System.out.println(a1.findSong("Desi Kalakar").getDuration());
+
+
+
     }
 }
