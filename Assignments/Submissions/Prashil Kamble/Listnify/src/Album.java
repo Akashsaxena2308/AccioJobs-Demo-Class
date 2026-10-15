@@ -21,6 +21,7 @@ public class Album {
         return artist;
     }
 
+    // add song to a album
     public void addSong(String title, int duration){
 
         if(title == null || title.isBlank()){
@@ -37,9 +38,11 @@ public class Album {
         }
 
         songList.add(new Song(title, duration));
+        System.out.println("Song added to an album");
 
     }
 
+    // check song is present or not in the album
     public Song findSong(String title){
         for (Song sng : songList){
             if(sng.getTitle().equals(title)){
@@ -50,7 +53,18 @@ public class Album {
     }
 
     // Add to playlist
+    public void addToPlayList(String title, List<Song> playlist){
+        if(playlist == null){
+            throw new IllegalArgumentException("Playlist cannot be null");
+        }
 
+        Song song = findSong(title);
+        if(song == null){
+            throw new IllegalArgumentException("Song is not present in this album");
+        }
+
+        playlist.add(song);
+    }
 
 
 
