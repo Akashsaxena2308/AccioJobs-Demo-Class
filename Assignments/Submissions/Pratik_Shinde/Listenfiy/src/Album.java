@@ -1,61 +1,44 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Album {
-    private final String name;
-    private final String author;
+    private String albumId;
+    private String title;
+    private List<Song> songs;
 
-    private final List<Song> songs = new ArrayList<>();
-
-    public Album(String name, String author){
-        this.name = name;
-        this.author = author;
+    public Album(String title) {
+        this.albumId = UUID.randomUUID().toString();
+        this.title = title;
+        this.songs = new ArrayList<>();
     }
 
-    public String getName(){
-        return name;
+    public void addSong(Song song){
+        if (song == null || songs.contains(song)){
+            throw new IllegalArgumentException("invalid credentials");
+        }
+        songs.add(song);
+        System.out.println("Added song '" + song.getTitle() + "' to album: " + title);
     }
 
-    public String getAuthor(){
-        return author;
+    public List<Song> getSongs() {
+        return songs;
     }
 
-    public void addSong(String title, double dur){
-        if (title == null || title.isBlank()){
-            throw new IllegalArgumentException("Title not found");
-        }
-
-        if(dur <= 0){
-            throw new IllegalArgumentException("Duration should be positive");
-        }
-
-        if (songs.contains(title)){
-            throw new IllegalArgumentException();
-        }
-
-        songs.add(new Song(title, dur));
+    public String getAlbumId() {
+        return albumId;
     }
 
-    public Song findSong(String title){
-        for (Song song : songs){
-            if(song.getTitle().equals(title)){
-                return song;
-            }
-        }
-
-        return null;
+    public String getTitle() {
+        return title;
     }
 
-    public void addToPlaylist(String title, List<Song> playlist){
-        if (playlist == null){
-            throw new IllegalArgumentException("Playlist cannot be");
-        }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-        Song song = findSong(title);
-        if(song == null){
-            throw new IllegalArgumentException("Not present");
-        }
-
-        playlist.add(song);
+    @Override
+    public String toString() {
+        return "Album{title='" + title + "', totalSongs=" + songs.size() + '}';
     }
 }

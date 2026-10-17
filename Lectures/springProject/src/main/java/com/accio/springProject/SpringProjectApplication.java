@@ -30,11 +30,12 @@ public class SpringProjectApplication {
 		return "Song" + id;
 	}
 
+//	@GetMapping("/playlist/{id}")
+//	public Song getSong(){
+//
+//	}
 
-
-
-
-
+	public Song get(@PathVa)
 	public static void main(String[] args) {
 
 		SpringApplication.run(SpringProjectApplication.class, args);
