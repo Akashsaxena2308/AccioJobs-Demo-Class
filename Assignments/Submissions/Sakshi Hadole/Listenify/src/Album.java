@@ -9,6 +9,9 @@ public class Album {
 
     private final List<Song> Songs=new ArrayList<>();
     public Album(String name, String artist){
+        if(name==null|| name.isBlank()|| artist==null ||artist.isBlank()){
+            throw new IllegalArgumentException("Album name and artist cannot be empty");
+        }
         this.name=name;
         this.artist=artist;
     }
@@ -20,11 +23,9 @@ public class Album {
     }
 
     public void addSong(String title,double duration){
-        if(title==null ||title.isBlank()){
-            throw new IllegalArgumentException();
-        }
-        if(duration<=0){
-            throw new IllegalArgumentException("Invalid Duration");
+        Song song=new Song(title,duration);
+        if(findSong(title )!= null){
+            throw new IllegalArgumentException("Duplicate song title");
         }
         Songs.add(new Song(title,duration));
     }
