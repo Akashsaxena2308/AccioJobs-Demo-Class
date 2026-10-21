@@ -1,4 +1,4 @@
-public class Main {
+public class LibraryMain {
 
     // Polymorphic method: accepts any LibraryItem and displays its details
     public static void displayItem(LibraryItem item) {
