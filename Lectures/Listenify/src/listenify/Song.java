@@ -1,3 +1,5 @@
+package listenify;
+
 public class Song {
     private final String title;
     private final double duration;
@@ -19,5 +21,9 @@ public class Song {
 
     public double getDuration() {
         return duration;
+    }
+    @Override
+    public String toString() {
+        return title + " (" + duration + " min)";
     }
 }

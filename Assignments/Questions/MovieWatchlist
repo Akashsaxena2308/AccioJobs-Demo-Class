@@ -1,0 +1,19 @@
+Independent Watchlist CRUD API
+
+Movie fields: id, title, releaseYear. Server assigns the ID. Store movies in memory.
+
+
+GET /movies
+GET /movies/{id}
+POST /movies
+PUT /movies/{id}
+DELETE /movies/{id}
+
+Create/update JSON:
+{"title":"Interstellar","releaseYear":2014}
+
+Rules: required nonblank title; releaseYear required, 1888–2100 inclusive. PUT replaces existing details and retains the ID. Invalid writes must leave existing data unchanged. Duplicate titles are allowed.
+
+Use 201 plus Location for creation; 204 without a body for successful deletion; 404 for missing IDs; 400 for invalid input. Do not allocate IDs with collection size + 1.
+
+Submit source and request evidence: create/read/update/delete; rejected update followed by unchanged GET; delete an early ID then create without overwriting another movie; empty collection; repeated POST versus PUT.
