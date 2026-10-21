@@ -1,12 +1,13 @@
 package src;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Album {
     private final String albumName;
     private final String artist;
+    private final List<Song> songs = new ArrayList<>();
 
-    private final List<Song> album = new ArrayList<>();
     public Album(String albumName, String artist) {
         this.albumName = albumName;
         this.artist = artist;
@@ -15,23 +16,21 @@ public class Album {
     public String getAlbumName() {
         return albumName;
     }
+
     public String getArtist() {
         return artist;
     }
 
     public void addSong(String title, double duration) {
-        if(title == null || title.isBlank()){
-            throw new IllegalArgumentException("Title cannot be null or blank");
+        if (findSong(title) != null) {
+            throw new IllegalArgumentException("Song already exists");
         }
-        if(duration <=0 ){
-            throw new IllegalArgumentException("Duration cannot be negative");
-        }
-        album.add(new Song(title, duration));
+        songs.add(new Song(title, duration));   // FIX: song is now actually saved
     }
 
     public Song findSong(String title) {
-        for (Song song : album) {
-            if(song.getTitle().equals(title)){
+        for (Song song : songs) {
+            if (song.getTitle().equals(title)) {
                 return song;
             }
         }
@@ -39,14 +38,13 @@ public class Album {
     }
 
     public void addToPlaylist(String title, List<Song> playList) {
-        if(playList == null){
+        if (playList == null) {
             throw new IllegalArgumentException("Playlist cannot be null");
         }
         Song song = findSong(title);
-        if(song == null){
+        if (song == null) {
             throw new IllegalArgumentException("Song not found");
         }
-
         playList.add(song);
     }
 }
