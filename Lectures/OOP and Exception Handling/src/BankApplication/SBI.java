@@ -1,17 +1,17 @@
 package BankApplication;
 
 public class SBI extends BankAccount {
-
-    int interestRate = 6;
-    public SBI(String name, String password, int balance){
+    public SBI(String name, String password, int balance) {
         super(name, password, balance);
     }
 
-    public String getBankName(){
+    @Override
+    public String getBankName() {
         return "SBI";
     }
 
-    public int getInterestRate(){
-        return interestRate;
+    @Override
+    public int getInterestRate() {
+        return 6;
     }
 }

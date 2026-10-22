@@ -1,0 +1,31 @@
+# Assignment: Make Listenify Interactive
+
+Extend the Listenify application built in class into a *menu-driven console application* using Scanner. Reuse your existing Song, Album and PlaylistPlayer classes.
+
+Display this menu repeatedly until the user chooses to quit:
+
+text
+========= LISTENIFY =========
+0. Quit
+1. Play next song
+2. Play previous song
+3. Replay current song
+4. Show playlist
+5. Remove current song
+6. Pause / Resume
+7. Add song to an album
+8. Create album
+9. Show available albums
+
+Enter your choice:
+
+
+- *Create album:* accept an album name and artist.
+- *Add song:* display available albums, ask the user to select one, then enter the song title and duration. Ask whether to add it to the playlist.
+- *Player controls:* connect the menu options to your PlaylistPlayer methods.
+
+Handle invalid input and empty-playlist operations with helpful messages.
+
+*Demonstrate:* create two albums, add songs from both to one playlist, and use the player controls. Actual audio playback and saving data after exit are not required.
+
+Submit your Java source using the class Git branch and pull-request workflow.
