@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="450262bd-27db-492f-8888-6e0a59b8f94c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../../AccioJobs-Demo-Class.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../AccioJobs-Demo-Class.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BankApplication/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client Arch and HTTP/src/HttpDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client Arch and HTTP/src/HttpDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library_System/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ListenifyMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/ListenifyMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayListPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayListPlayer.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;rutikjagtap&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Akashsaxena2308/AccioJobs-Demo-Class.git&quot;,
+    &quot;accountId&quot;: &quot;3c3d4076-0238-4d5b-ae22-a1c8ce2f4750&quot;
+  }
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0562960046121967" />
+      <entry key="MS500" value="1.8574040776712386" />
+      <entry key="S2" value="3.6751114386905273" />
+      <entry key="S5" value="5.572275919660324" />
+      <entry key="S10" value="7.20441879823116" />
+      <entry key="S30" value="15.361921082660627" />
+      <entry key="S60" value="33.42781137357299" />
+      <entry key="M2" value="77.4336038204521" />
+      <entry key="M5" value="201.07719480065353" />
+      <entry key="M10" value="320.92185056741937" />
+      <entry key="M15" value="383.83657390092844" />
+      <entry key="M30" value="465.0213461153983" />
+      <entry key="H1" value="514.4125664836922" />
+      <entry key="H2" value="541.7347759746013" />
+      <entry key="H4" value="556.114829109013" />
+      <entry key="D1" value="568.4832046989427" />
+      <entry key="W1" value="570.6395664125641" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.9884974681359724" />
+      <entry key="MS500" value="1.8205311003727942" />
+      <entry key="S2" value="3.654583261067525" />
+      <entry key="S5" value="5.559727729226259" />
+      <entry key="S10" value="7.196235847697036" />
+      <entry key="S30" value="15.355869682926201" />
+      <entry key="S60" value="33.42106414046824" />
+      <entry key="M2" value="77.42544522544642" />
+      <entry key="M5" value="201.06761629496242" />
+      <entry key="M10" value="320.913483647411" />
+      <entry key="M15" value="383.82965196457064" />
+      <entry key="M30" value="465.01698336146234" />
+      <entry key="H1" value="514.4101028819989" />
+      <entry key="H2" value="541.7334649964981" />
+      <entry key="H4" value="556.1141526357063" />
+      <entry key="D1" value="568.4830889322155" />
+      <entry key="W1" value="570.6395497990418" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3KYLvuva1GVZg9SzgInNeLp4C4o" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ListenifyMain.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#21 on Rutik&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/rutik/Acciojob notes/OOPS/Listenify/AccioJobs-Demo-Class/Assignments/Submissions/Rutik Jagtap/Listenify&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;python.packages.toolwindow.project.migrated.to.right.top.v2&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="450262bd-27db-492f-8888-6e0a59b8f94c" name="Changes" comment="" />
+      <created>1791729789513</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1791729789513</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
