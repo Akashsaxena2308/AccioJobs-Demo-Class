@@ -1,4 +1,4 @@
-package com.accio.springProject;
+package com.accio.springProject.Hospital.Model;
 
 public class PatientInput {
 

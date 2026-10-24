@@ -1,0 +1,85 @@
+# Run SpringProjectApplication. Start with a fresh process and execute in order.
+# 0-2 min: input vs response model; map and monotonic ID.
+# 2-5 min: GET + POST, validation before allocation, 201 and Location.
+# 5-9 min: PUT and rejected update; GET proves the old movie is unchanged.
+# 9-12 min: DELETE then POST proves IDs do not collide.
+# 12-15 min: repeated POST vs PUT, missing IDs and empty list.
+@baseUrl = http://localhost:8081
+
+### Initially: 200 []
+GET {{baseUrl}}/movies
+
+### Invalid create: 400; does not consume ID 1
+POST {{baseUrl}}/movies
+Content-Type: application/json
+
+{"title":" ","releaseYear":2014}
+
+### 201; ID 1; Location: /movies/1
+POST {{baseUrl}}/movies
+Content-Type: application/json
+
+{"title":"Inception","releaseYear":2010}
+
+### 201; ID 2
+POST {{baseUrl}}/movies
+Content-Type: application/json
+
+{"title":"Interstellar","releaseYear":2014}
+
+### 200: one movie
+GET {{baseUrl}}/movies/1
+
+### 200: replaces both details; ID remains 1. Repeat: same state.
+PUT {{baseUrl}}/movies/1
+Content-Type: application/json
+
+{"title":"The Matrix","releaseYear":1999}
+
+### 400: must NOT change title to Damaged
+PUT {{baseUrl}}/movies/1
+Content-Type: application/json
+
+{"title":"Damaged","releaseYear":1800}
+
+### Still The Matrix / 1999
+GET {{baseUrl}}/movies/1
+
+### 400: year required; not silently treated as zero
+POST {{baseUrl}}/movies
+Content-Type: application/json
+
+{"title":"Missing year"}
+
+### 404: PUT cannot create a missing movie
+PUT {{baseUrl}}/movies/999
+Content-Type: application/json
+
+{"title":"Missing","releaseYear":2020}
+
+### 204: no response body
+DELETE {{baseUrl}}/movies/1
+
+### 201: ID 3, not 2. Repeat POST creates another movie with a new ID.
+POST {{baseUrl}}/movies
+Content-Type: application/json
+
+{"title":"Arrival","releaseYear":2016}
+
+### Movie 2 must still be Interstellar
+GET {{baseUrl}}/movies/2
+
+### 404 after deletion
+GET {{baseUrl}}/movies/1
+
+### 404 on repeated delete
+DELETE {{baseUrl}}/movies/1
+
+### Remove remaining movies to demonstrate 200 []
+DELETE {{baseUrl}}/movies/2
+
+### 204
+DELETE {{baseUrl}}/movies/3
+
+### 200 []; if you repeated POST, also delete its returned ID first.
+GET {{baseUrl}}/movies
