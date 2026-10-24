@@ -1,0 +1,270 @@
+{
+  "info": {
+    "name": "Movie Watchlist - 15 minute walkthrough",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8081"
+    }
+  ],
+  "item": [
+    {
+      "name": "Initially: 200 []",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/movies",
+        "header": []
+      }
+    },
+    {
+      "name": "Invalid create: 400; does not consume ID 1",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/movies",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\" \",\"releaseYear\":2014}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "201; ID 1; Location: /movies/1",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/movies",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"Inception\",\"releaseYear\":2010}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "201; ID 2",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/movies",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"Interstellar\",\"releaseYear\":2014}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "200: one movie",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/movies/1",
+        "header": []
+      }
+    },
+    {
+      "name": "200: replaces both details; ID remains 1. Repeat: same state.",
+      "request": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/movies/1",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"The Matrix\",\"releaseYear\":1999}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "400: must NOT change title to Damaged",
+      "request": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/movies/1",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"Damaged\",\"releaseYear\":1800}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Still The Matrix / 1999",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/movies/1",
+        "header": []
+      }
+    },
+    {
+      "name": "400: year required; not silently treated as zero",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/movies",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"Missing year\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "404: PUT cannot create a missing movie",
+      "request": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/movies/999",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"Missing\",\"releaseYear\":2020}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "204: no response body",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/movies/1",
+        "header": []
+      }
+    },
+    {
+      "name": "201: ID 3, not 2. Repeat POST creates another movie with a new ID.",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/movies",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"Arrival\",\"releaseYear\":2016}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Movie 2 must still be Interstellar",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/movies/2",
+        "header": []
+      }
+    },
+    {
+      "name": "404 after deletion",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/movies/1",
+        "header": []
+      }
+    },
+    {
+      "name": "404 on repeated delete",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/movies/1",
+        "header": []
+      }
+    },
+    {
+      "name": "Remove remaining movies to demonstrate 200 []",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/movies/2",
+        "header": []
+      }
+    },
+    {
+      "name": "204",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/movies/3",
+        "header": []
+      }
+    },
+    {
+      "name": "200 []; if you repeated POST, also delete its returned ID first.",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/movies",
+        "header": []
+      }
+    }
+  ]
+}
