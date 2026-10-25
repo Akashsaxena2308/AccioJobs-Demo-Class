@@ -1,0 +1,25 @@
+Extend the Hospital API so existing patients can be assigned to doctors. Store both doctor records and assignments in the same H2 database as the patients.
+
+
+• Doctor fields: id and name. Create the doctors table at startup and insert two sample doctors through the H2 Console: 1 / Dr Asha and 2 / Dr Meera.
+
+
+• A doctor can have many patients. A patient is unassigned or assigned to one doctor at a time.
+
+
+• PUT /doctors/{doctorId}/patients/{patientId} assigns an existing patient and returns 200 with the doctor and their current patients.
+
+
+• GET /doctors/{doctorId}/patients returns 200 with that doctor's patient list. An existing doctor with no assigned patients returns [].
+
+
+• A missing doctor or patient returns 404 with a useful message. A failed assignment must leave existing assignments unchanged.
+
+
+• Repeating assignment to the same doctor must not duplicate the patient. Assigning a different doctor moves the patient to that doctor.
+
+
+• Assignments must survive restart. Later reads must show current patient names and exclude deleted patients.
+
+
+Use the existing JdbcTemplate, constructor injection, service exceptions and controller-level try/catch approach.
