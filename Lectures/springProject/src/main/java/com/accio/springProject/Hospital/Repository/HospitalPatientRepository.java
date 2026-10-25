@@ -2,6 +2,8 @@ package com.accio.springProject.Hospital.Repository;
 
 import com.accio.springProject.Hospital.Entity.Patient;
 import com.accio.springProject.Hospital.Model.PatientInput;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -10,40 +12,34 @@ import java.util.List;
 @Repository
 public class HospitalPatientRepository {
 
-    private final List<Patient> patients = new ArrayList<>();
-    long id;
+    private final JdbcTemplate jdbc;
 
-    public HospitalPatientRepository(){
-        patients.add(new Patient(1, "Patient1" , 25));
-        patients.add(new Patient(2,"Patient2", 32));
-        id = 2;
+    public HospitalPatientRepository(JdbcTemplate jdbc) {
+        this.jdbc = jdbc;
+
     }
 
-    public List<Patient> findAll(){
-        return patients;
+    private final RowMapper<Patient> patientMapper =
+            (rs, rowNum) ->
+                    new Patient(rs.getLong("id"), rs.getString("name"), rs.getInt("age"));
+
+    public List<Patient> findAll() {
+        return jdbc.query("SELECT id, name, age FROM patients ORDER BY id", patientMapper);
     }
 
-    public void add(PatientInput patientInput){
-        patients.add(new Patient(id+1, patientInput.getName(), patientInput.getAge()));
-        id++;
+    public void add(PatientInput patientInput) {
+        long id = jdbc.queryForObject("SELECT NEXT VALUE for patient_id", Long.class);
+        jdbc.update("INSERT INTO patients (id, name, age) VALUES (?, ?, ?)", id, patientInput.getName(), patientInput.getAge());
     }
 
-    public void updateName(long id, PatientInput input){
-        for (Patient p : patients){
-            if(p.getId() == id){
-                p.setName(input.getName());
-            }
-        }
+    public void updateName(long id, PatientInput input) {
+        jdbc.update("UPDATE patients SET name = ? WHERE id = ?", input.getName(), id);
     }
 
-    public boolean delete(long id){
-        for(int index = 0; index< patients.size(); index++){
-            if(patients.get(index).getId() == id){
-                patients.remove(index);
-                return true;
-            }
-        }
 
-        return false;
+    public boolean delete(long id) {
+        int removedRows = jdbc.update("DELETE FROM patients WHERE id = ?", id);
+        return removedRows > 0;
     }
 }
+

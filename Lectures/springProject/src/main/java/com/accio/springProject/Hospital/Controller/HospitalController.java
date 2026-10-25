@@ -3,7 +3,7 @@ package com.accio.springProject.Hospital.Controller;
 import com.accio.springProject.Hospital.Entity.Patient;
 import com.accio.springProject.Hospital.Model.PatientInput;
 import com.accio.springProject.Hospital.Service.HospitalPatientService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,22 +37,22 @@ public class HospitalController {
 
 
     @PostMapping("/addPatient")
-    public List<Patient> addPatient(@RequestBody PatientInput patientInput){
-       return service.addPatient(patientInput);
+    public List<Patient> addPatient(@Valid @RequestBody PatientInput patientInput){
+        return service.addPatient(patientInput);
     }
 
     @PutMapping("/updatePatient/{id}")
-    public List<Patient> updatePatient(@PathVariable long id, @RequestBody PatientInput input){
+    public List<Patient> updatePatient(@PathVariable long id,@Valid @RequestBody PatientInput input){
         return service.updatePatient(id, input);
     }
 
     @DeleteMapping("/deletePatients/{id}")
     public ResponseEntity<Object> deletePatient(@PathVariable long id){
-        if(!service.deletePatient(id)){
+        boolean deleted = service.deletePatient(id);
+        if(!deleted){
             return ResponseEntity.status(404).body("Patient not found!");
         }
-
-        return ResponseEntity.ok(service.deletePatient(id));
+        return ResponseEntity.ok(service.getPatients());
     }
 
     @GetMapping("/browse")

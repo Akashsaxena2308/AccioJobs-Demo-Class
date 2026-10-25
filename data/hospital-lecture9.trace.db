@@ -1,0 +1,6 @@
+2026-10-25 11:46:21.024767+05:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS patients( id BIGINT PRIMARY KEY, name VARCHAR(255) NOT NULL, age INTEGER NOT NULL ) [*]CREATE SEQUENCE IF NOT EXISTS patient_id START WITH 1"; SQL statement:
+CREATE TABLE IF NOT EXISTS patients( id BIGINT PRIMARY KEY, name VARCHAR(255) NOT NULL, age INTEGER NOT NULL ) CREATE SEQUENCE IF NOT EXISTS patient_id START WITH 1 [42000-240]
+2026-10-25 13:15:01.605898+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PATIETNS" not found; SQL statement:
+SELECT * FROM PATIETNS [42102-240]
