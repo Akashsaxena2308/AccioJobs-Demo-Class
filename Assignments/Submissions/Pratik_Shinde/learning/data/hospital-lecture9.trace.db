@@ -1,0 +1,6 @@
+2026-10-27 22:20:37.579176+05:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS patients([*]"; expected "identifier"; SQL statement:
+CREATE TABLE IF NOT EXISTS patients( [42001-240]
+2026-10-28 00:10:59.883822+05:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS patients([*]"; expected "identifier"; SQL statement:
+CREATE TABLE IF NOT EXISTS patients( [42001-240]
