@@ -28,8 +28,7 @@ public class HospitalPatientRepository {
     }
 
     public void add(PatientInput patientInput) {
-        long id = jdbc.queryForObject("SELECT NEXT VALUE for patient_id", Long.class);
-        jdbc.update("INSERT INTO patients (id, name, age) VALUES (?, ?, ?)", id, patientInput.getName(), patientInput.getAge());
+        jdbc.update("INSERT INTO patients ( name, age) VALUES ( ?, ?)", patientInput.getName(), patientInput.getAge());
     }
 
     public void updateName(long id, PatientInput input) {

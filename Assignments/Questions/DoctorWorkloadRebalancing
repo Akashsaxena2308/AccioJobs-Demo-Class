@@ -1,0 +1,34 @@
+Problem: workload report and one balancing step
+
+
+Extend the existing Hospital H2 application with a workload report and one balancing operation. Workload means the number of patients currently assigned to a doctor. Use the existing models, JdbcTemplate and named row mappers. Calculate counts and make decisions in Java; SQL joins and aggregation are not required.
+
+
+Endpoint 1: GET /doctors/workload. Return doctorId, doctorName and patientCount for every doctor, including doctors with zero patients. Sort by patientCount descending, then doctorId ascending. No doctors means 200 with [].
+
+
+
+[
+  {"doctorId":1,"doctorName":"Dr Watson","patientCount":5},
+  {"doctorId":2,"doctorName":"Dr Banner","patientCount":1},
+  {"doctorId":3,"doctorName":"Dr Strange","patientCount":0}
+]
+
+
+Endpoint 2: POST /doctors/rebalance, with no request body. Choose the busiest and least busy doctors. If their counts differ by more than one, move exactly one patient from busiest to least busy. For tied doctor counts, choose the lowest doctor ID. Move the lowest-ID patient belonging to the busiest doctor. Persist the new assignment using the existing UPDATE method. Ignore unassigned patients.
+
+
+Return 200 with moved, message, patientId, fromDoctorId and toDoctorId. With fewer than two doctors, or a maximum/minimum difference of at most one, return moved=false and a useful message; the three IDs are null. A request performs one move, not a complete redistribution.
+
+
+
+Before: Watson 5, Banner 1, Strange 0
+One POST → move lowest-ID Watson patient to Strange
+After:  Watson 4, Banner 1, Strange 1
+
+
+
+Use the existing Controller → Service → Repository flow. No new database tables, SQL joins or SQL aggregation are required. Response models are not database entities.
+
+
+Predict the results for workloads 5/1/0, 2/1, all zero, and a single doctor. With counts doctor 1:2, doctor 2:2, doctor 3:0, doctor 4:0, which source and target should be selected?
