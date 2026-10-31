@@ -29,13 +29,18 @@ public class DoctorRepository {
     }
 
     public List<Patient> findPatientsByDoctorId(long doctorId){
-        return jdbc.query("SELECT id, name, age FROM patients WHERE doctor_id = ?", patientRowMapper, doctorId);
+        return jdbc.query("SELECT id, name, age FROM patients WHERE doctor_id = ? ORDER BY id", patientRowMapper, doctorId);
     }
 
     public boolean assignPatients(long doctorId, long patientId){
         int changedRow = jdbc.update("UPDATE patients SET doctor_id = ? WHERE id = ?", doctorId, patientId);
 
         return changedRow > 0;
+    }
+
+
+    public List<Doctor> findAll() {
+        return jdbc.query("SELECT id, name FROM doctors ORDER BY id", doctorRowMapper);
     }
 
 }
