@@ -3,6 +3,8 @@ package com.accio.springProject.Hospital.Service;
 import com.accio.springProject.Hospital.Entity.Patient;
 import com.accio.springProject.Hospital.Model.PatientInput;
 import com.accio.springProject.Hospital.Repository.HospitalPatientRepository;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,12 +15,19 @@ public class HospitalPatientService {
 
     private final HospitalPatientRepository repository;
 
+
+    private static final Logger log =
+            LoggerFactory.getLogger(HospitalPatientService.class);
+
     public HospitalPatientService(HospitalPatientRepository repository){
         this.repository = repository;
     }
 
     public List<Patient> getPatients(){
-        return repository.findAll();
+        log.info("Fetching hospital patients");
+        List<Patient> patients = repository.findAll();
+        log.debug("Fetched {} patient rows", patients.size());
+        return patients;
     }
 
     public List<Patient> addPatient(PatientInput input){
