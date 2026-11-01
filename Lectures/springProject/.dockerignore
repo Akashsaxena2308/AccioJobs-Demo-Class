@@ -1,0 +1,10 @@
+target
+data
+.idea
+.git
+*.iml
+.env
+.env.*
+*.pem
+*.p12
+*.jks
