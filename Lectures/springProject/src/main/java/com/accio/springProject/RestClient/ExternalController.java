@@ -3,6 +3,7 @@ package com.accio.springProject.RestClient;
 import org.apache.coyote.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,5 +41,13 @@ public class ExternalController {
 
             return ResponseEntity.status(502).body(Map.of("message", "Service provider not available"));
         }
+
+    }
+
+    @GetMapping("/task/status/{user_id}")
+    public ResponseEntity<ExternalUser> tasks(@PathVariable long user_id){
+        ExternalUser user = service.completedTask(user_id);
+        log.debug("service class executed ");
+        return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
     }
 }
