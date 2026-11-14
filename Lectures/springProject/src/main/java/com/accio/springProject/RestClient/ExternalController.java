@@ -41,4 +41,35 @@ public class ExternalController {
             return ResponseEntity.status(502).body(Map.of("message", "Service provider not available"));
         }
     }
+
+
+    @GetMapping("/demo/users/{userId}/task-summary")
+    public ResponseEntity<?> summarizeUserTasks(@PathVariable("userId") long userId) {
+        if (userId <= 0) {
+            return ResponseEntity.badRequest().body(Map.of("message", "User ID must be positive"));
+        }
+
+        try {
+            return ResponseEntity.ok(service.summarizeUserTasks(userId));
+        } catch (ExternalService.UserNotFoundException ex) {
+            return ResponseEntity.status(404).body(Map.of("message", "User not found"));
+        } catch (RestClientException ex) {
+            log.warn("Task summary provider failure for user {}: {}", userId,
+                    ex.getClass().getSimpleName());
+            return ResponseEntity.status(502).body(Map.of("message", "Service provider not available"));
+        }
+    }
+
+    //userID --> Tasks
+    // Userid, name, total task, completed, pending
+
+
+    //External Controller --> ExternalService
+
+    // ExternalService --> RestClient --> get call
+
+    // 1st get --> todos -- list of tasks
+    // 2nd get --> user detail --> user name
+
+    //list of tasks -- filter out -->filtered list user id  --> count completed -->
 }
