@@ -3,6 +3,8 @@ package com.accio.springProject.Hospital.Service;
 import com.accio.springProject.Hospital.Entity.Patient;
 import com.accio.springProject.Hospital.Model.PatientInput;
 import com.accio.springProject.Hospital.Repository.HospitalPatientRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,6 +13,12 @@ import java.util.List;
 @Service
 public class HospitalPatientService {
 
+    //Hospital Service --> Singleton --> Application --> same object will be user for HS
+    //HS1 , HS2 --> log --> Same
+    //static --> Same or shared between all objects
+
+    private static final Logger log = LoggerFactory.getLogger(HospitalPatientService.class);
+
     private final HospitalPatientRepository repository;
 
     public HospitalPatientService(HospitalPatientRepository repository){
@@ -18,8 +26,23 @@ public class HospitalPatientService {
     }
 
     public List<Patient> getPatients(){
-        return repository.findAll();
+        log.info("Fetching hospital patients!");
+
+        //Extra logic
+
+        List<Patient> patients = repository.findAll();
+
+        System.out.println("Checkpoint 1");
+
+        log.debug("Fetched {} patient rows {}", patients.size(), patients.size());
+        return patients;
     }
+
+    //ERROR --> Failed operation; logging alone does not stop the application
+    //WARN --> Unusual condition worth attention
+    //INFO --> Normal operations --------> DEFAULT application level
+    //DEBUG --> Debugging information needed to understand the application --> User
+    //TRACE --> Very detailed execution
 
     public List<Patient> addPatient(PatientInput input){
         repository.add(input);
@@ -72,3 +95,29 @@ public class HospitalPatientService {
         return patients;
     }
 }
+
+
+//Application --> Java Service
+
+
+//Frontend --> API -->  Tomcat --> Dispatcher servlet --> Identify which controller and method will be called
+// Controller --> java methods --> service --> repository ....
+
+
+//Hospital Application -- Cab Service Application
+
+// API --> REST API , SOAP , graphQL
+
+// Internet communication --> REST API
+
+// Rest client
+
+// Third party application -- Java Application
+
+
+
+//springProjectApplication
+//Expose an endpoint to get task with a given id
+// Todos --> Task list --> Id
+// localhost:8081/todos/{id} --> Task details
+//springProjectAPplication ---> API call --> Fake REST Jsonplaceholder service --> Task details --> We will use task details
