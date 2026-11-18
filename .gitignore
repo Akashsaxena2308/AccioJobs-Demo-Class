@@ -1,0 +1,21 @@
+﻿# Compiled Java files
+out/
+*.class
+
+# Maven build output
+target/
+
+# Local databases
+data/
+*.mv.db
+*.trace.db
+
+# Environment secrets
+.env
+.env.*
+*.pem
+*.p12
+*.jks
+# IntelliJ IDEA
+.idea/
+*.iml
