@@ -16,6 +16,14 @@ public class AppSettings {
 //        new AppSettings()
     }
 
+//    private static class Holder {
+//        private static final AppSettings INSTANCE = new AppSettings();
+//    }
+//
+//    public static AppSettings getInstance() {
+//        return Holder.INSTANCE;
+//    }
+
 }
 //App settings --> Object --> Singleton --> One instance per java application
 

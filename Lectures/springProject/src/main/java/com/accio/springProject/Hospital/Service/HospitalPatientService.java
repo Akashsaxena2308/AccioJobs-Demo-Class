@@ -55,6 +55,7 @@ public class HospitalPatientService {
     }
 
     public boolean deletePatient(long id){
+        //Additional
         return repository.delete(id);
     }
 
