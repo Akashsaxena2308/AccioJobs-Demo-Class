@@ -1,5 +1,6 @@
 package com.accio.springProject;
 
+import com.accio.springProject.Hospital.Model.PatientInput;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
