@@ -1,6 +1,8 @@
 package com.accio.springProject.JpaMovies;
 
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,6 +45,23 @@ public class MovieService {
 
 
     public List<Movie> suitable(double rating, int time){
-        return repository.findByRatingAndTimeGreaterThanEqualOrderByIdAsc(rating, time);
+        return repository.findByRatingAndTimeUsingSQL(rating, time);
     }
+
+    public List<Movie> suitableSort(double rating, int time, int page, int size,
+                                    String sortBy, String direction){
+
+//        Sort sort = Sort.by(Sort.Direction.DESC,"rating").and(Sort.by("id"));
+
+        Sort sort =  Sort.by(Sort.Direction.fromString(direction), sortBy);
+        if(!sortBy.equals("id")){
+           sort = sort.and(Sort.by("id"));
+        }
+        return repository.findByRatingAndTimeUsingJPQL(rating, time, PageRequest.of(page, size, sort));
+    }
+
+    public List<RatingSummary> findRatingSummary() {
+        return repository.findRatingSummary();
+    }
+
 }
