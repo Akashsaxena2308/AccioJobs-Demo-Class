@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Library Desk · Book lookup</title>
+  <link rel="stylesheet" href="desk.css">
+  <script defer src="library-api.js"></script>
+  <script defer src="books.js"></script>
+</head>
+<body>
+  <header><div class="bar"><strong>Library Desk</strong><nav aria-label="Library navigation"><a href="index.html">Students</a><a href="books.html" aria-current="page">Books</a><a href="shelves.html">Shelves</a></nav><span id="source"></span></div></header>
+  <main>
+    <section class="lookup">
+      <div class="shelf" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <h1>Book lookup</h1>
+      <p>Look up a title, its authors and its availability.</p>
+      <form id="lookup">
+        <label for="book-id">Book ID</label>
+        <div class="controls"><input id="book-id" name="book" inputmode="numeric" required pattern="[1-9][0-9]*" title="Enter a positive book ID" value="101"><button>Find book</button></div>
+      </form>
+    </section>
+    <p id="message" role="status"></p>
+    <section id="record" hidden>
+      <div class="member">
+        <div><small>Book title</small><h2 id="book-title"></h2></div>
+        <div><small>Book ID</small><strong id="record-id"></strong></div>
+        <div><small>Availability</small><span id="availability" class="status"></span></div>
+      </div>
+      <h2 class="history">Authors</h2>
+      <p id="authors"></p>
+    </section>
+  </main>
+</body></html>
+
