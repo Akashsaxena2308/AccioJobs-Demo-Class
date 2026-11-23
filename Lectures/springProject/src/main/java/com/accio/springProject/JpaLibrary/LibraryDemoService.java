@@ -1,5 +1,6 @@
 package com.accio.springProject.JpaLibrary;
 
+import com.accio.springProject.JpaLibrary.LibraryViews.*;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class LibraryDemoService {
 
     public LibraryViews.StudentView student(Long id){
         LibraryStudent student  = studentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Student not found!"));
+                .orElseThrow(() -> new LibraryNotFoundException("Student not found"));
 
         List<LibraryViews.LoanView> result = new ArrayList<>();
 
