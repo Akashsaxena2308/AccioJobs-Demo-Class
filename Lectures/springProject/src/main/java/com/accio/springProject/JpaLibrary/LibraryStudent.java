@@ -20,11 +20,22 @@ public class LibraryStudent {
     @Column(nullable = false)
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "card_id", nullable = false, unique = true)
     private LibraryCard card;
 
     @OneToMany(mappedBy = "libraryStudent")
     @OrderBy("id ASC")
     private List<LibraryLoan> loans = new ArrayList<>();
+
+    public LibraryStudent(String name, LibraryCard card) {
+        this.name = name;
+        this.card = card; // Connect Student row to Library card row
+        card.assignTo(this); // Connect Library card row to Student row
+    }
 }
+
+
+//STUDENT -->  CARD
+// Name --> John --> Code --> CARD CODE
+

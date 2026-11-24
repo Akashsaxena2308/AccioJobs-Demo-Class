@@ -19,4 +19,13 @@ public class LibraryCard {
 
     @OneToOne(mappedBy = "card")
     private LibraryStudent student;
+
+    public LibraryCard (String cardCode){
+        this.code = cardCode;
+    }
+
+    public void assignTo(LibraryStudent student){
+        this.student = student;
+    }
+
 }
