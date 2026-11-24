@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Library Desk · Shelf lookup</title>
+  <link rel="stylesheet" href="desk.css">
+  <script defer src="library-api.js"></script>
+  <script defer src="shelves.js"></script>
+</head>
+<body>
+  <header><div class="bar"><strong>Library Desk</strong><nav aria-label="Library navigation"><a href="index.html">Students</a><a href="books.html">Books</a><a href="shelves.html" aria-current="page">Shelves</a></nav><span id="source"></span></div></header>
+  <main>
+    <section class="lookup">
+      <div class="shelf" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <h1>Shelf lookup</h1>
+      <p>Find the book at a room and shelf position.</p>
+      <form id="lookup">
+        <div class="controls shelf-controls">
+          <label>Room code<input id="room" required value="NORTH" pattern=".*\S.*"></label>
+          <label>Position<input id="position" required value="1" inputmode="numeric" pattern="[1-9][0-9]*"></label>
+          <button>Find book</button>
+        </div>      </form>
+    </section>
+    <p id="message" role="status"></p>
+    <section id="record" hidden>
+      <div class="member">
+        <div><small>Book title</small><h2 id="book-title"></h2></div>
+        <div><small>Room</small><strong id="room-result"></strong></div>
+        <div><small>Position</small><strong id="position-result"></strong></div>
+      </div>    </section>
+  </main>
+</body></html>
+
