@@ -18,4 +18,16 @@ public class LibraryViews {
 
     }
 
+    public record BookView(Long id,
+                           String title,
+                           List<String> authors){
+
+    }
+
+    public record ShelfView(String roomCode,
+                            Integer position,
+                            String book){
+
+    }
+
 }
